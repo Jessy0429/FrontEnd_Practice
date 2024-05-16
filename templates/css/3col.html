@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3ColumnDisplay</title>
+</head>
+<body style="margin: 0">
+    <div class="main">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+    <style>
+        .main{
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background: #000000;
+        }
+        .left{
+            height:100%;
+            width:25%;
+            background: red;
+        }
+        .center{
+            height:100%;
+            flex:1;
+            background: yellow;
+        }
+        .right{
+            height:100%;
+            width:25%;
+            background: blue;
+        }
+    </style>
+</body>
+</html>
