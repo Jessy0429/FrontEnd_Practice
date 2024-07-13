@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LazyLoad</title>
+</head>
+<style>
+    img {
+        width: 400px;
+        height: 400px;
+        display: block;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <img src="static/loadimg.png">
+        <img src="static/loadimg.png">
+        <img src="static/loadimg.png">
+    </div>
+</body>
+<script>
+    img_path = ['static/img1.png', 'static/img2.png', 'static/img2.png']
+    function lazyLoad(){
+        const windowHeight = window.innerHeight;
+        let imgs = document.getElementsByTagName('img')
+        let scrollTop = document.documentElement.scrollTop
+        for(let i in img_path){
+            let img = document.getElementsByTagName('img')[i]
+            if(scrollTop+windowHeight>img.offsetTop && img.offsetTop+img.offsetHeight>scrollTop){
+                //可视
+                // img.src = img_path[i]
+                setTimeout(()=>{
+                    img.src = img_path[i]
+                }, 1000)
+            }
+        }
+    }
+    //先调用一次
+    window.onload = function (){
+        lazyLoad()
+        window.addEventListener('scroll', ()=>{lazyLoad()})
+    }
+</script>
+</html>

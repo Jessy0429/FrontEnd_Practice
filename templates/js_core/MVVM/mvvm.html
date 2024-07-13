@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+</head>
+<body>
+<div id="mvvm">
+
+</div>
+<script type="module">
+    import {observe, watch} from '/static/Observer.js'
+    let person = {
+      'sex':'girl',
+      'name':'晓甜甜',
+      'address':'XXX公寓',
+      'parent':{
+        'father':'小明',
+        'mother':'李红'
+      }
+    }
+     function mvvm(data, el, key){
+       this.data = data
+       observe(data)
+         new watch(this, key, (newv)=>{
+         el.innerHTML = newv
+       })
+       el.innerHTML = this.data[key]
+       return this
+     }
+
+     let el = document.getElementById('mvvm')
+     let vm = new mvvm(person, el, 'name')
+     setTimeout(function(){
+       vm.data.name = '饭甜甜'
+     },2000)
+
+  </script>
+</body>
+</html>

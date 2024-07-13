@@ -1,0 +1,41 @@
+<template>
+  <div class="todo-app">
+    <input type="text" v-model="newTodo" @keyup.enter="addTodo" placeholder="Add new todo">
+    <ul>
+      <li v-for="(todo, index) in todos" :key="index">
+          <template v-if="!todo.status">
+              {{ todo.text }}<button @click="Complete(index)">Remove</button>
+          </template>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      newTodo: undefined, // 用于双向绑定输入框的文本
+      todos: [] // 存储todo项的数组
+    };
+  },
+  methods: {
+    // 添加新的todo项
+    addTodo() {
+      if (this.newTodo !== undefined) {
+        this.todos.push({
+            text: this.newTodo,
+            status: false
+          // 可以添加更多属性，如完成状态等
+        });
+        this.newTodo = undefined; // 清空输入框
+      }
+    },
+    // 删除指定索引的todo项
+    Complete(index) {
+      // this.todos.splice(index, 1);
+        this.todos[index].status = true;
+    }
+  }
+};
+</script>

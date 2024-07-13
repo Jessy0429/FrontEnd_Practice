@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const url = ['img1', 'img2', 'img3']
+    let imgs = []
+    for (let l of url){
+        let t = new Image();
+        t.src = 'static/'+l+'.png';
+        imgs.push(t)
+    }
+    let div = document.createElement('div')
+    document.body.appendChild(div)
+    div.innerHTML = imgs[0].outerHTML
+    setTimeout(()=>{
+        div.innerHTML = imgs[1].outerHTML
+    },5000)
+
+</script>
+</body>
+</html>

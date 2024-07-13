@@ -1,0 +1,22 @@
+<template>
+    <input v-model="keyword" @input="searchEvent"/>
+    <div v-if="suggestion.length">
+        <p v-for="(text, id) in suggestion">{{text}}</p>
+    </div>
+</template>
+
+<script>
+    searchEvent(){
+        if (this.timer) clearTimeout(this.timer)
+        if (this.keyword){
+            this.timer = setTimeout(()=>{
+                //请求联想补全
+                const url = 'xxxx'+this.keywords
+                this.$axios.get(url).then((res)=>{
+                        this.suggestion = res
+                }
+                )
+            },500)
+        }
+    }
+</script>
